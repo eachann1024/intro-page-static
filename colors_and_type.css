@@ -1,0 +1,206 @@
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600;6..72,700&family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600&display=swap');
+
+/* ============================================================
+   鹅的工具箱 · Goose Tools — Design Tokens
+   ------------------------------------------------------------
+   The shared visual language behind 鹅的书签 / 鹅的运行 / 鹅的监控 /
+   鹅的验证 / 鹅的笔记 — a suite of keyboard-first maker tools.
+
+   Aesthetic: "Claude warm-minimal". A clay / coral accent on
+   barely-warm ivory paper (light) or desaturated warm-charcoal
+   (dark). A dedicated "AI purple" identity color runs through
+   every AI-assisted surface. Editorial serif for display +
+   the native system sans for UI, so text feels like the OS.
+   ============================================================ */
+
+:root {
+  /* ---- Surfaces (crisp white chrome, faint-warm canvas) ---- */
+  --bg:            #faf9f5;  /* page / canvas — barely-warm white */
+  --chrome:        #ffffff;  /* sidebar + tab bar — pure white app chrome */
+  --surface:       #f0eee6;  /* cards, popovers, menus — warm cream */
+  --surface-hover: #e8e6db;  /* hover fill on surfaces */
+  --input:         #ffffff;  /* field backgrounds — crisp white */
+
+  /* ---- Foreground (warm near-black → faint) ---- */
+  --fg:        #1f1e1d;  /* primary text — warm ink */
+  --fg-muted:  #6c6b64;  /* secondary text, labels */
+  --fg-faint:  #a4a299;  /* timestamps, placeholders, idle */
+
+  /* ---- Accent (clay / coral) ---- */
+  --accent:        #d97757;  /* primary action, links, focus, selection */
+  --accent-hover:  #c25f3c;  /* pressed / hover-darker (light mode) */
+  --accent-subtle: #f3e7e0;  /* tinted fill behind accent text / selected row */
+  --accent-fg:     #ffffff;  /* text on accent fills */
+
+  /* ---- AI identity (purple) — every AI surface ---- */
+  --ai:        #7c52e0;  /* AI text / charge-fill / narration */
+  --ai-bright: #c8a2f0;  /* AI narration on dark log */
+  --ai-subtle: #f1eaff;  /* AI tinted background */
+
+  /* ---- Lines ---- */
+  --border: #e6e3d9;  /* hairline borders, dividers — warm */
+
+  /* ---- Status / semantic ---- */
+  --success:        #187c49;  /* "copied", exit 0 */
+  --success-subtle: #e3f3e8;
+  --danger:         #b54a3f;  /* timer-low, destructive — warm red */
+  --run-blue:    #3b82f6;  /* running / live (always blue, pulses) */
+  --ok-green:    #22c55e;  /* success dot */
+  --fail-red:    #ef4444;  /* failed dot */
+  --warn-yellow: #eab308;  /* stopped / stop button */
+
+  /* ---- Terminal / log (always dark, both themes) ---- */
+  --term-bg:   #1b1815;
+  --term-fg:   #d8d3cc;
+  --term-time: #5c5650;
+  --term-sys:  #85b8e0;
+  --term-err:  #f08080;
+  --term-ok:   #7ecf8a;
+  --term-warn: #e8c865;
+
+  /* ---- Radii (base --radius 0.875rem = 14px, the "cell" radius) ---- */
+  --radius:      0.875rem;                  /* 14px — cards, "cells" */
+  --radius-sm:   calc(var(--radius) * 0.6); /* ~8px  — chips, small controls */
+  --radius-md:   calc(var(--radius) * 0.8); /* ~11px — buttons, inputs */
+  --radius-lg:   var(--radius);             /* 14px  — cards, panels */
+  --radius-xl:   calc(var(--radius) * 1.4); /* ~20px — windows, modals */
+  --radius-cell: 14px;                      /* the canonical list-cell radius */
+  --radius-pill: 999px;                     /* status pills, toggles */
+
+  /* ---- Type families ----
+     Editorial SERIF for display/headings (Copernicus/Tiempos feel,
+     substituted by Newsreader + Noto Serif SC for 中文), the NATIVE
+     SYSTEM SANS for UI/body, and a mono for logs & codes.
+     One app (鹅的运行 / 鹅的验证) opts the whole body into a warm KAITI
+     (楷体) serif for a softer, hand-written editorial feel — see
+     --font-kai below; both are valid within the system. */
+  --font-serif: "Newsreader", "Noto Serif SC", Georgia, "Songti SC", serif;
+  --font-sans:  -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+  --font-kai:   "Iowan Old Style", Palatino, Georgia, "STKaiti", "Kaiti SC", "Kaiti TC", "BiauKai", "楷体", "KaiTi", serif;
+  --font-mono:  ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+
+  /* ---- Type scale (px @ root 16) ---- */
+  --text-h1:   1.25rem;   /* 20px — panel / screen titles (serif, 600) */
+  --text-h2:   1.125rem;  /* 18px — section headers */
+  --text-body: 0.875rem;  /* 14px — default UI text */
+  --text-sm:   0.8125rem; /* 13px — secondary */
+  --text-xs:   0.75rem;   /* 12px — meta, labels */
+  --text-2xs:  0.6875rem; /* 11px — timestamps, tiny chips */
+  --text-mono: 0.78rem;   /* ~12.5px — log lines */
+  --text-code: 1.625rem;  /* 26px — the big OTP / metric numerals (mono, 600) */
+
+  --leading-tight:  1.2;
+  --leading-normal: 1.5;
+  --leading-log:    1.55;
+
+  /* ---- Elevation ---- */
+  --shadow-sm:  0 1px 2px rgba(25, 15, 9, 0.04);
+  --shadow-pop: 0 8px 28px -8px rgba(25, 15, 9, 0.18);
+  --shadow-win: 0 22px 70px -12px rgba(20, 12, 6, 0.55);
+
+  /* ---- Motion ---- */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1); /* the house easing — cells, slides */
+  --dur-fast: 0.15s;
+  --dur:      0.2s;
+  --dur-cell: 0.3s;
+}
+
+.dark {
+  /* Claude-style dark: neutral warm-charcoal, low chroma, crisp
+     off-white text. Not brown — a desaturated graphite that lets
+     the coral accent sing. Note: in dark mode, accent HOVER goes
+     LIGHTER, not darker. */
+  --bg:            #262624;
+  --chrome:        #2f2f2d;
+  --surface:       #30302e;
+  --surface-hover: #3a3936;
+  --input:         #21211f;
+
+  --fg:        #faf9f5;
+  --fg-muted:  #b7b5ad;
+  --fg-faint:  #75746d;
+
+  --accent:        #e0875f;
+  --accent-hover:  #ea9670;  /* hover = LIGHTER in dark mode */
+  --accent-subtle: #3a2a22;
+  --accent-fg:     #ffffff;
+
+  --ai:        #a78bfa;
+  --ai-bright: #d9bdf6;
+  --ai-subtle: #2c2640;
+
+  --border: #3e3e3a;
+
+  --success:        #249057;
+  --success-subtle: #152e1c;
+  --danger:         #d15c56;
+
+  --shadow-sm:  0 1px 2px rgba(0, 0, 0, 0.25);
+  --shadow-pop: 0 8px 28px -8px rgba(0, 0, 0, 0.55);
+  --shadow-win: 0 22px 70px -12px rgba(0, 0, 0, 0.70);
+}
+
+/* ============================================================
+   SEMANTIC TYPE — apply these classes or copy the declarations.
+   ============================================================ */
+
+.gr-display {        /* hero / big editorial moment */
+  font-family: var(--font-serif);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 600;
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  color: var(--fg);
+}
+.gr-h1 {
+  font-family: var(--font-serif);
+  font-size: var(--text-h1);
+  font-weight: 600;
+  line-height: var(--leading-tight);
+  color: var(--fg);
+}
+.gr-h2 {
+  font-family: var(--font-serif);
+  font-size: var(--text-h2);
+  font-weight: 600;
+  line-height: var(--leading-tight);
+  color: var(--fg);
+}
+.gr-body {
+  font-family: var(--font-sans);
+  font-size: var(--text-body);
+  line-height: var(--leading-normal);
+  color: var(--fg);
+}
+.gr-muted {
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+  color: var(--fg-muted);
+}
+.gr-label {
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  color: var(--fg-muted);
+}
+.gr-meta {
+  font-family: var(--font-sans);
+  font-size: var(--text-2xs);
+  color: var(--fg-faint);
+}
+.gr-code,
+.gr-mono {
+  font-family: var(--font-mono);
+  font-size: var(--text-mono);
+  line-height: var(--leading-log);
+  font-variant-numeric: tabular-nums;
+}
+.gr-numeral {       /* the big OTP / KPI numerals */
+  font-family: var(--font-mono);
+  font-size: var(--text-code);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  font-variant-numeric: tabular-nums;
+  color: var(--fg);
+}
