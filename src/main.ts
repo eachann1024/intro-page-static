@@ -5,59 +5,83 @@ import { createClouds } from "../components/canvasui/CloudsVanilla.ts";
 import { createGlitch } from "../components/canvasui/GlitchVanilla.ts";
 import { createRetroDither } from "../components/canvasui/RetroDitherVanilla.ts";
 
-type EffectName = "liquid" | "ripple" | "clouds" | "glitch" | "dither";
+const effectNames = ["liquid", "ripple", "clouds", "glitch", "dither"] as const;
+type EffectName = (typeof effectNames)[number];
 type EffectInstance = { destroy: () => void } | null;
+
+type ProductScreenshot = {
+  src: string;
+  alt: string;
+  caption: string;
+};
 
 const products = [
   {
     id: "note",
     name: "鹅的笔记",
     en: "goose-note",
-    line: "把本地文件夹变成一间有版本回滚、AI 辅写和多格式导出的写作室。",
-    tags: ["Tauri 2", "BlockNote", "AI"],
-    signal: "正在写",
+    line: "本地优先的 Notion 风格笔记，支持块编辑、本地文件夹与 AI 辅助。",
+    tags: ["uTools", "BlockNote", "AI"],
+    signal: "持续迭代",
+    channel: "发布渠道：uTools 插件 · 同时支持浏览器运行",
+    screenshots: [
+      { src: "/assets/products/note/editor.webp", alt: "鹅的笔记编辑器，左侧是笔记树，右侧是块编辑正文", caption: "块编辑器与本地笔记树" },
+      { src: "/assets/products/note/format-repair.webp", alt: "鹅的笔记深色界面中的本地文件格式修复提示", caption: "本地文件格式修复" },
+    ] satisfies ProductScreenshot[],
   },
   {
     id: "run",
     name: "鹅的运行",
     en: "goose-run",
-    line: "脚本拖进来，一键运行；参数、日志、端口占用和 AI 分析都在眼前。",
-    tags: ["uTools", "Tauri 2", "AI"],
-    signal: "高频迭代",
+    line: "把本地命令变成可复用、可监控、可安全运行的桌面工作流。",
+    tags: ["macOS", "AppKit", "真实 PTY"],
+    signal: "原生重构",
+    channel: "发布渠道：macOS 原生应用 · 早期曾提供 uTools 插件",
+    screenshots: [
+      { src: "/assets/products/run/control-deck.webp", alt: "鹅的运行深色控制台界面预览，包含脚本库、运行状态和终端", caption: "当前产品方向预览 · 脚本控制台" },
+      { src: "/assets/products/run/editor-preview.webp", alt: "鹅的运行浅色脚本编辑与日志终端界面预览", caption: "当前产品方向预览 · 编辑与日志" },
+    ] satisfies ProductScreenshot[],
   },
   {
     id: "marks",
     name: "鹅的书签",
     en: "goose-marks",
-    line: "不让收藏继续吃灰：快速保存、模板搜索、画报浏览和本地图标抓取。",
+    line: "在 uTools 里分类、搜索与快速保存网页的极简书签管理工具。",
     tags: ["Vue 3", "uTools", "AI"],
     signal: "持续焕新",
+    channel: "发布渠道：uTools 插件",
+    screenshots: [
+      { src: "/assets/products/marks/list-light.webp", alt: "鹅的书签深色网格视图，展示分组、搜索和书签卡片", caption: "深色主题与网格浏览" },
+      { src: "/assets/products/marks/grid-dark.webp", alt: "鹅的书签暖白色列表视图，展示分组、搜索和书签条目", caption: "列表视图与二级分组" },
+    ] satisfies ProductScreenshot[],
   },
   {
     id: "monitor",
     name: "鹅的监控",
     en: "goose-monitor",
-    line: "会把 Helper 进程收好、也真的能结束进程的跨平台活动监视器。",
-    tags: ["Rust", "Tauri 2", "TypeScript"],
+    line: "能看懂应用分组、也能一键结束进程的跨平台活动监视器。",
+    tags: ["Tauri 2", "uTools", "Rust"],
     signal: "跨平台",
+    channel: "发布渠道：桌面应用 · 提供 uTools 插件版",
+    screenshots: [
+      { src: "/assets/products/monitor/main-dark.webp", alt: "鹅的监控深色主界面，按应用归并进程并展示资源占用", caption: "应用分组与真实资源占用" },
+      { src: "/assets/products/monitor/tray-timer.webp", alt: "鹅的监控菜单栏定时退出拨盘", caption: "菜单栏定时退出" },
+    ] satisfies ProductScreenshot[],
   },
   {
     id: "2fa",
     name: "鹅的验证",
     en: "goose-2fa",
-    line: "不离开键盘，在搜索框里取到验证码，再自动贴回刚才的窗口。",
+    line: "在 uTools 主搜索框快速查找并粘贴 2FA / OTP 验证码。",
     tags: ["uTools", "2FA", "键盘流"],
     signal: "已经能用",
+    channel: "发布渠道：uTools 插件 · 本地加密存储",
+    screenshots: [
+      { src: "/assets/products/2fa/main.webp", alt: "鹅的验证欢迎界面，提供手动添加、剪贴板导入和屏幕扫码", caption: "账户首页与三种添加方式" },
+      { src: "/assets/products/2fa/add-account.webp", alt: "鹅的验证添加账户界面，可输入账户名称、密钥并选择 TOTP 或 HOTP", caption: "TOTP / HOTP 账户添加" },
+    ] satisfies ProductScreenshot[],
   },
 ];
-
-const effectMeta: Record<EffectName, { label: string; hint: string }> = {
-  liquid: { label: "流体", hint: "移动指针，搅动一小片珊瑚色流体" },
-  ripple: { label: "涟漪", hint: "点击任意位置，让页面像水面一样回应" },
-  clouds: { label: "云雾", hint: "移动指针，把雾从你的阅读路径上推开" },
-  glitch: { label: "故障", hint: "广播信号偶尔撕裂，点击可立即触发" },
-  dither: { label: "抖动", hint: "指针变成一枚复古像素透镜" },
-};
 
 const icon = (name: "arrow" | "github" | "mail" | "spark" | "moon" | "menu") => {
   const paths = {
@@ -76,9 +100,9 @@ if (!app) throw new Error("缺少应用挂载节点");
 
 app.innerHTML = `
   <header class="site-nav" data-scrolled="false">
-    <a class="wordmark" href="#top" aria-label="回到顶部">
-      <img src="/assets/logos/goose-note.png" alt="" />
-      <span>Eachann</span><b>／鹅</b>
+    <a class="wordmark" href="#top" aria-label="鹅的系列介绍，回到顶部">
+      <img src="/assets/logos/goose-note.png" alt="" draggable="false" />
+      <span>鹅的系列介绍</span>
     </a>
     <nav class="nav-links" aria-label="主导航">
       <a href="#work">作品</a><a href="#method">方法</a><a href="#now">近况</a>
@@ -92,7 +116,7 @@ app.innerHTML = `
       <canvas class="effect-source" id="effect-source" layoutsubtree="true" aria-hidden="true"></canvas>
       <canvas class="effect-output" id="effect-output" aria-hidden="true"></canvas>
       <div class="hero-art" aria-hidden="true">
-        <img src="/assets/pixel-noir/goose-lab-hero.webp" alt="" fetchpriority="high" />
+        <img src="/assets/pixel-noir/goose-lab-hero.webp" alt="" draggable="false" fetchpriority="high" />
       </div>
       <div class="hero-layout">
         <div class="hero-copy" id="effect-content">
@@ -106,13 +130,6 @@ app.innerHTML = `
         </div>
         <p class="scene-caption"><i></i> 五只鹅正在排队等发版</p>
       </div>
-      <div class="effect-console" aria-label="Canvas UI 特效控制台">
-        <div class="effect-console__label">SIGNAL FX / 像素实验场</div>
-        <div class="effect-switches" role="group" aria-label="选择页面特效">
-          ${Object.entries(effectMeta).map(([key, value], index) => `<button type="button" data-effect="${key}" aria-pressed="${index === 0}">${value.label}</button>`).join("")}
-        </div>
-        <p id="effect-hint" aria-live="polite">${effectMeta.liquid.hint}</p>
-      </div>
       <a class="scroll-cue" href="#work"><span>向下</span><i></i></a>
     </section>
 
@@ -123,14 +140,30 @@ app.innerHTML = `
       </div>
       <div class="work-list">
         ${products.map((product, index) => `
-          <article class="work-item reveal" data-product="${product.id}">
-            <div class="work-index">0${index + 1}</div>
-            <img src="/assets/logos/goose-${product.id}.png" alt="${product.name}图标" />
-            <div class="work-name"><h3>${product.name}</h3><p>${product.en}</p></div>
-            <p class="work-desc">${product.line}</p>
-            <div class="work-tags">${product.tags.map((tag) => `<span>${tag}</span>`).join("")}</div>
-            <div class="work-signal"><i></i>${product.signal}</div>
-          </article>
+          <details class="work-item reveal" data-product="${product.id}">
+            <summary class="work-summary">
+              <div class="work-index">0${index + 1}</div>
+              <img src="/assets/logos/goose-${product.id}.png" alt="${product.name}图标" draggable="false" />
+              <div class="work-name"><h3>${product.name}</h3><p>${product.en}</p></div>
+              <p class="work-desc">${product.line}</p>
+              <div class="work-tags">${product.tags.map((tag) => `<span>${tag}</span>`).join("")}</div>
+              <div class="work-toggle"><span>查看截图</span><i aria-hidden="true"></i></div>
+            </summary>
+            <div class="work-detail">
+              <div class="work-detail__meta">
+                <p class="work-channel"><span></span>${product.channel}</p>
+                <p><i></i>${product.signal}</p>
+              </div>
+              <div class="work-gallery">
+                ${product.screenshots.map((shot) => `
+                  <figure>
+                    <img src="${shot.src}" alt="${shot.alt}" draggable="false" loading="lazy" decoding="async" />
+                    <figcaption>${shot.caption}</figcaption>
+                  </figure>
+                `).join("")}
+              </div>
+            </div>
+          </details>
         `).join("")}
       </div>
     </section>
@@ -142,7 +175,7 @@ app.innerHTML = `
           <h2>一份核心，<br />多种壳。<br /><span>少一点重复，</span><br />多一点交付。</h2>
         </div>
         <figure class="method-scene reveal">
-          <img src="/assets/pixel-noir/goose-lab-workbench.webp" alt="深夜的鹅工具实验室里，一只鹅正在工作台前发布软件" loading="lazy" />
+          <img src="/assets/pixel-noir/goose-lab-workbench.webp" alt="深夜的鹅工具实验室里，一只鹅正在工作台前发布软件" draggable="false" loading="lazy" />
           <figcaption><span>LIVE FEED</span> 深夜 02:17 · 新版本正在打包</figcaption>
         </figure>
       </div>
@@ -157,16 +190,16 @@ app.innerHTML = `
     <section class="now-section" id="now">
       <div class="now-heading reveal"><span>SHIP LOG / 最近在 ship</span><h2>发版像呼吸。</h2></div>
       <div class="now-feed">
-        <article class="reveal"><time>2026.06</time><img src="/assets/logos/goose-note.png" alt="" /><p><b>鹅的笔记</b>连接真实磁盘文件夹，加入版本快照回滚、PDF / Word 导出和 AI 行内辅写。</p><span>新增</span></article>
-        <article class="reveal"><time>2026.06</time><img src="/assets/logos/goose-monitor.png" alt="" /><p><b>鹅的监控</b>完成分平台打包、Linux 图标识别，Windows 抓图标不再闪黑窗。</p><span>修复</span></article>
-        <article class="reveal"><time>2026.05</time><img src="/assets/logos/goose-run.png" alt="" /><p><b>鹅的运行</b>加入脚本分析、拖拽导入、运行前参数面板和端口占用检测。</p><span>迭代</span></article>
+        <article class="reveal"><time>2026.06</time><img src="/assets/logos/goose-note.png" alt="" draggable="false" /><p><b>鹅的笔记</b>连接真实磁盘文件夹，加入版本快照回滚、PDF / Word 导出和 AI 行内辅写。</p><span>新增</span></article>
+        <article class="reveal"><time>2026.06</time><img src="/assets/logos/goose-monitor.png" alt="" draggable="false" /><p><b>鹅的监控</b>完成分平台打包、Linux 图标识别，Windows 抓图标不再闪黑窗。</p><span>修复</span></article>
+        <article class="reveal"><time>2026.05</time><img src="/assets/logos/goose-run.png" alt="" draggable="false" /><p><b>鹅的运行</b>升级为 AppKit + WKWebView 原生 macOS 应用，接入真实 PTY 与脚本工作流。</p><span>重构</span></article>
       </div>
     </section>
 
     <section class="contact-section" id="contact">
       <canvas class="contact-ripple" id="contact-ripple" aria-hidden="true"></canvas>
       <canvas class="contact-source" id="contact-source" layoutsubtree="true" aria-hidden="true"></canvas>
-      <img class="contact-art" src="/assets/pixel-noir/goose-lab-portal.webp" alt="一只提着工具箱的鹅走向星光门廊" loading="lazy" />
+      <img class="contact-art" src="/assets/pixel-noir/goose-lab-portal.webp" alt="一只提着工具箱的鹅走向星光门廊" draggable="false" loading="lazy" />
       <div class="contact-copy" id="contact-content">
         <p>NEXT BUILD / 下一次构建</p>
         <h2>来交换一个<br />还没做完的想法。</h2>
@@ -183,7 +216,7 @@ app.innerHTML = `
 
 const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 let activeEffect: EffectInstance = null;
-let activeEffectName: EffectName = "liquid";
+let activeEffectName: EffectName = effectNames[Math.floor(Math.random() * effectNames.length)];
 
 const createOutputCanvas = () => {
   const oldCanvas = document.querySelector<HTMLCanvasElement>("#effect-output");
@@ -201,11 +234,6 @@ const startEffect = (name: EffectName) => {
   activeEffect = null;
   document.documentElement.dataset.effect = name;
 
-  const hint = document.querySelector<HTMLElement>("#effect-hint");
-  if (hint) hint.textContent = motionQuery.matches ? "已按系统设置减少动态效果" : effectMeta[name].hint;
-  document.querySelectorAll<HTMLButtonElement>("button[data-effect]").forEach((button) => {
-    button.setAttribute("aria-pressed", String(button.dataset.effect === name));
-  });
   if (motionQuery.matches) return;
 
   const source = document.querySelector<HTMLCanvasElement>("#effect-source");
@@ -228,10 +256,6 @@ const startEffect = (name: EffectName) => {
   }
 };
 
-document.querySelectorAll<HTMLButtonElement>("button[data-effect]").forEach((button) => {
-  button.addEventListener("click", () => startEffect(button.dataset.effect as EffectName));
-});
-
 const contactOutput = document.querySelector<HTMLCanvasElement>("#contact-ripple");
 const contactSource = document.querySelector<HTMLCanvasElement>("#contact-source");
 const contactContent = document.querySelector<HTMLElement>("#contact-content");
@@ -250,7 +274,21 @@ motionQuery.addEventListener("change", () => {
   startEffect(activeEffectName);
 });
 
-startEffect("liquid");
+startEffect(activeEffectName);
+
+document.addEventListener("dragstart", (event) => {
+  if (event.target instanceof Element && event.target.closest("img, svg")) event.preventDefault();
+});
+
+const productDetails = document.querySelectorAll<HTMLDetailsElement>(".work-item");
+productDetails.forEach((details) => {
+  details.addEventListener("toggle", () => {
+    if (!details.open) return;
+    productDetails.forEach((other) => {
+      if (other !== details) other.open = false;
+    });
+  });
+});
 
 const nav = document.querySelector<HTMLElement>(".site-nav");
 const onScroll = () => nav?.setAttribute("data-scrolled", String(window.scrollY > 24));
