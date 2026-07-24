@@ -15,6 +15,127 @@ type ProductScreenshot = {
   caption: string;
 };
 
+type ShipCommit = {
+  sha: string;
+  time: string;
+  date: string;
+  message: string;
+  url: string;
+};
+
+type ShipEntry = {
+  id: string;
+  name: string;
+  en: string;
+  repoUrl: string;
+  summary: string;
+  latestDate: string;
+  commits: ShipCommit[];
+};
+
+const shipLog: ShipEntry[] = [
+  {
+    id: "run",
+    name: "鹅的运行",
+    en: "goose-run",
+    repoUrl: "https://github.com/eachann1024/goose-run",
+    summary: "升级为 AppKit + WKWebView 原生 macOS 应用，接入真实 PTY 与脚本工作流。",
+    latestDate: "2026.07",
+    commits: [
+      { sha: "d7d36a9", time: "2026-07-23 14:26", date: "2026.07.23", message: "feat: 情况有变、更换 Mac 系统架构", url: "https://github.com/eachann1024/goose-run/commit/d7d36a9" },
+      { sha: "786d7a2", time: "2026-07-21 17:03", date: "2026.07.21", message: "fix: stabilize terminal copy and font profile", url: "https://github.com/eachann1024/goose-run/commit/786d7a2" },
+      { sha: "d2ed4c8", time: "2026-07-20 08:31", date: "2026.07.20", message: "Merge pull request #2 from eachann1024/feat/comprehensive-quality-pass", url: "https://github.com/eachann1024/goose-run/commit/d2ed4c8" },
+      { sha: "c51f405", time: "2026-07-20 00:46", date: "2026.07.20", message: "完善原生终端与工作台交互", url: "https://github.com/eachann1024/goose-run/commit/c51f405" },
+      { sha: "381bf84", time: "2026-07-16 19:55", date: "2026.07.16", message: "修复 => 恢复终端命令高亮", url: "https://github.com/eachann1024/goose-run/commit/381bf84" },
+      { sha: "a6c3bfd", time: "2026-07-16 19:49", date: "2026.07.16", message: "修复 => 终端 Nerd Font 图标显示", url: "https://github.com/eachann1024/goose-run/commit/a6c3bfd" },
+      { sha: "287defe", time: "2026-07-16 14:44", date: "2026.07.16", message: "修复 => 恢复文本选中复制", url: "https://github.com/eachann1024/goose-run/commit/287defe" },
+      { sha: "eb4ffed", time: "2026-07-14 14:35", date: "2026.07.14", message: "修复 => Ctrl+C 中断后保留终端会话", url: "https://github.com/eachann1024/goose-run/commit/eb4ffed" },
+      { sha: "fc5b082", time: "2026-07-13 15:28", date: "2026.07.13", message: "文档 => 清理过时项目提示词", url: "https://github.com/eachann1024/goose-run/commit/fc5b082" },
+      { sha: "f3a77df", time: "2026-07-13 15:23", date: "2026.07.13", message: "修复 => 中断后显示终端输入提示", url: "https://github.com/eachann1024/goose-run/commit/f3a77df" },
+    ],
+  },
+  {
+    id: "note",
+    name: "鹅的笔记",
+    en: "goose-note",
+    repoUrl: "https://github.com/eachann1024/goose-notes",
+    summary: "连接真实磁盘文件夹，加入版本快照回滚、PDF / Word 导出和 AI 行内辅写。",
+    latestDate: "2026.07",
+    commits: [
+      { sha: "3777c8c", time: "2026-07-22 17:59", date: "2026.07.22", message: "feat: 新增原生编辑器并增强 AI 上下文", url: "https://github.com/eachann1024/goose-notes/commit/3777c8c" },
+      { sha: "eba315d", time: "2026-07-20 11:44", date: "2026.07.20", message: "Merge pull request #13 from eachann1024/feature/quicknote-image-export", url: "https://github.com/eachann1024/goose-notes/commit/eba315d" },
+      { sha: "7cb4af3", time: "2026-07-20 11:11", date: "2026.07.20", message: "[优化] 快捷键展示按系统格式化并关闭拼写误标", url: "https://github.com/eachann1024/goose-notes/commit/7cb4af3" },
+      { sha: "c95823e", time: "2026-07-20 10:35", date: "2026.07.20", message: "[优化] 完善速记槽位与图片导出样式", url: "https://github.com/eachann1024/goose-notes/commit/c95823e" },
+      { sha: "0036008", time: "2026-07-20 08:57", date: "2026.07.20", message: "修复速记数据安全并完善主窗可靠性与无障碍体验 (#11)", url: "https://github.com/eachann1024/goose-notes/commit/0036008" },
+      { sha: "187ce8b", time: "2026-07-20 08:37", date: "2026.07.20", message: "Revert \"Merge pull request #12 from codex/native-webview-rebuild\"", url: "https://github.com/eachann1024/goose-notes/commit/187ce8b" },
+      { sha: "e6289ca", time: "2026-07-20 08:33", date: "2026.07.20", message: "Merge pull request #12 from codex/native-webview-rebuild", url: "https://github.com/eachann1024/goose-notes/commit/e6289ca" },
+      { sha: "0cdb77b", time: "2026-07-20 02:32", date: "2026.07.20", message: "重构为原生 macOS 鹅的笔记", url: "https://github.com/eachann1024/goose-notes/commit/0cdb77b" },
+      { sha: "1c450bd", time: "2026-07-19 16:38", date: "2026.07.19", message: "Release 0.0.38 (42) (#212)", url: "https://github.com/eachann1024/goose-notes/commit/1c450bd" },
+      { sha: "b1116f2", time: "2026-07-19 13:44", date: "2026.07.19", message: "Merge pull request #204 from eachann1024/feature/app-language-localization", url: "https://github.com/eachann1024/goose-notes/commit/b1116f2" },
+    ],
+  },
+  {
+    id: "marks",
+    name: "鹅的书签",
+    en: "goose-marks",
+    repoUrl: "https://github.com/eachann1024/goose-mark",
+    summary: "优化书签图标回退与域名展示，强化分组浏览与 Windows uTools 稳定性。",
+    latestDate: "2026.07",
+    commits: [
+      { sha: "134b868", time: "2026-07-22 17:48", date: "2026.07.22", message: "feat: 优化书签图标回退与域名展示", url: "https://github.com/eachann1024/goose-mark/commit/134b868" },
+      { sha: "3b1165e", time: "2026-07-22 14:18", date: "2026.07.22", message: "chore: remove legacy tauri remnants", url: "https://github.com/eachann1024/goose-mark/commit/3b1165e" },
+      { sha: "3143d1f", time: "2026-07-19 23:36", date: "2026.07.19", message: "feat: 书签标题描述溢出时悬停显示完整内容", url: "https://github.com/eachann1024/goose-mark/commit/3143d1f" },
+      { sha: "88c35be", time: "2026-07-16 10:31", date: "2026.07.16", message: "fix: 优化 Windows uTools 稳定性", url: "https://github.com/eachann1024/goose-mark/commit/88c35be" },
+      { sha: "955e778", time: "2026-07-16 10:22", date: "2026.07.16", message: "fix: 优化子分组标题与悬停交互", url: "https://github.com/eachann1024/goose-mark/commit/955e778" },
+      { sha: "62f4940", time: "2026-07-10 08:39", date: "2026.07.10", message: "部署 => 增加 Sites 托管构建与发布配置", url: "https://github.com/eachann1024/goose-mark/commit/62f4940" },
+      { sha: "66285f2", time: "2026-07-08 16:35", date: "2026.07.08", message: "修复 => 修复窗口高度恢复兼容与回放一致性", url: "https://github.com/eachann1024/goose-mark/commit/66285f2" },
+      { sha: "02fc54b", time: "2026-07-06 10:02", date: "2026.07.06", message: "feat: improve detached window search continuity", url: "https://github.com/eachann1024/goose-mark/commit/02fc54b" },
+      { sha: "fa36cbd", time: "2026-07-05 00:37", date: "2026.07.05", message: "fix: improve utools compatibility", url: "https://github.com/eachann1024/goose-mark/commit/fa36cbd" },
+      { sha: "a20ce3e", time: "2026-07-03 16:08", date: "2026.07.03", message: "fix: simplify bookmark edit actions", url: "https://github.com/eachann1024/goose-mark/commit/a20ce3e" },
+    ],
+  },
+  {
+    id: "2fa",
+    name: "鹅的验证",
+    en: "goose-2fa",
+    repoUrl: "https://github.com/eachann1024/goose-2fa",
+    summary: "同步分组能力，优化一级分组与快捷入口，完善快速取码与数据可靠性。",
+    latestDate: "2026.07",
+    commits: [
+      { sha: "4510208", time: "2026-07-22 14:16", date: "2026.07.22", message: "fix: 同步分组并移除 Tauri 架构", url: "https://github.com/eachann1024/goose-2fa/commit/4510208" },
+      { sha: "eb29592", time: "2026-07-20 10:35", date: "2026.07.20", message: "feat: 优化一级分组与快捷入口体验", url: "https://github.com/eachann1024/goose-2fa/commit/eb29592" },
+      { sha: "0e11fd6", time: "2026-07-20 08:41", date: "2026.07.20", message: "Merge pull request #1 from eachann1024/base-ui", url: "https://github.com/eachann1024/goose-2fa/commit/0e11fd6" },
+      { sha: "8708ccc", time: "2026-07-20 00:52", date: "2026.07.20", message: "ci: 在 PR 中运行质量门禁", url: "https://github.com/eachann1024/goose-2fa/commit/8708ccc" },
+      { sha: "36dee1c", time: "2026-07-20 00:51", date: "2026.07.20", message: "feat: 完善分组、快速取码与数据可靠性", url: "https://github.com/eachann1024/goose-2fa/commit/36dee1c" },
+      { sha: "1321e61", time: "2026-06-09 13:41", date: "2026.06.09", message: "chore: 更新 2fa 鸭子图标为透明圆角版本", url: "https://github.com/eachann1024/goose-2fa/commit/1321e61" },
+      { sha: "e523c3d", time: "2026-06-07 11:36", date: "2026.06.07", message: "feat: add drag-to-reorder and grid/list view toggle", url: "https://github.com/eachann1024/goose-2fa/commit/e523c3d" },
+      { sha: "e0b4fa7", time: "2026-06-04 01:29", date: "2026.06.04", message: "feat(ui): 迁移在用组件至 HeroUI v3 并加可调试构建与 vendor 分包", url: "https://github.com/eachann1024/goose-2fa/commit/e0b4fa7" },
+      { sha: "f1226bc", time: "2026-06-04 00:51", date: "2026.06.04", message: "chore: WIP baseline before goose rebuild (monitoring removal / HeroUI / deps / build)", url: "https://github.com/eachann1024/goose-2fa/commit/f1226bc" },
+      { sha: "9a7e621", time: "2026-05-28 11:46", date: "2026.05.28", message: "feat: add quick-code mode for instant OTP paste from uTools search bar", url: "https://github.com/eachann1024/goose-2fa/commit/9a7e621" },
+    ],
+  },
+  {
+    id: "monitor",
+    name: "鹅的监控",
+    en: "goose-monitor",
+    repoUrl: "https://github.com/eachann1024/goose-monitor",
+    summary: "完成分平台打包、Linux 图标识别，Windows 抓图标不再闪黑窗。",
+    latestDate: "2026.07",
+    commits: [
+      { sha: "8d728b6", time: "2026-07-20 08:42", date: "2026.07.20", message: "Merge pull request #1 from eachann1024/feat/project-quality-pass", url: "https://github.com/eachann1024/goose-monitor/commit/8d728b6" },
+      { sha: "20e9809", time: "2026-07-20 01:15", date: "2026.07.20", message: "ci: align actions and checks with supported runtimes", url: "https://github.com/eachann1024/goose-monitor/commit/20e9809" },
+      { sha: "d98e35a", time: "2026-07-20 01:09", date: "2026.07.20", message: "fix: satisfy pinned Rust lint rules", url: "https://github.com/eachann1024/goose-monitor/commit/d98e35a" },
+      { sha: "3d99ef4", time: "2026-07-20 01:02", date: "2026.07.20", message: "fix: make clean CI builds reproducible", url: "https://github.com/eachann1024/goose-monitor/commit/3d99ef4" },
+      { sha: "2c0bbc1", time: "2026-07-20 00:57", date: "2026.07.20", message: "feat: harden process management and quality gates", url: "https://github.com/eachann1024/goose-monitor/commit/2c0bbc1" },
+      { sha: "87e2176", time: "2026-07-18 22:43", date: "2026.07.18", message: "fix: restore Windows app icons and refine search ranking", url: "https://github.com/eachann1024/goose-monitor/commit/87e2176" },
+      { sha: "806852c", time: "2026-07-02 13:56", date: "2026.07.02", message: "feat: support fuzzy process search", url: "https://github.com/eachann1024/goose-monitor/commit/806852c" },
+      { sha: "11ac564", time: "2026-06-29 13:42", date: "2026.06.29", message: "feat: per-category list columns and keyboard hints", url: "https://github.com/eachann1024/goose-monitor/commit/11ac564" },
+      { sha: "c3e3a61", time: "2026-06-29 09:47", date: "2026.06.29", message: "refactor: support theme sync and auto color scheme", url: "https://github.com/eachann1024/goose-monitor/commit/c3e3a61" },
+      { sha: "f5ffa2f", time: "2026-06-18 14:56", date: "2026.06.18", message: "feat: add tray cleanup-line module and uTools slash-key search focus", url: "https://github.com/eachann1024/goose-monitor/commit/f5ffa2f" },
+    ],
+  },
+];
+
 const products = [
   {
     id: "note",
@@ -77,8 +198,8 @@ const products = [
     signal: "已经能用",
     channel: "发布渠道：uTools 插件 · 本地加密存储",
     screenshots: [
-      { src: "/assets/products/2fa/main.webp", alt: "鹅的验证欢迎界面，提供手动添加、剪贴板导入和屏幕扫码", caption: "账户首页与三种添加方式" },
-      { src: "/assets/products/2fa/add-account.webp", alt: "鹅的验证添加账户界面，可输入账户名称、密钥并选择 TOTP 或 HOTP", caption: "TOTP / HOTP 账户添加" },
+      { src: "/assets/products/2fa/main.webp", alt: "鹅的验证 uTools 窗口首页，展示验证码网格、分组筛选和搜索", caption: "uTools 窗口 · 验证码网格" },
+      { src: "/assets/products/2fa/add-account.webp", alt: "鹅的验证添加账户界面，支持剪贴板导入、屏幕扫码和手动输入", caption: "uTools 窗口 · 添加账户" },
     ] satisfies ProductScreenshot[],
   },
 ];
@@ -172,7 +293,7 @@ app.innerHTML = `
       <div class="method-grid">
         <div class="method-statement reveal">
           <p>WORKBENCH / 我的深夜工作台</p>
-          <h2>一份核心，<br />多种壳。<br /><span>少一点重复，</span><br />多一点交付。</h2>
+          <h2>一份核心，多种壳。<br /><span>少一点重复，多一点交付。</span></h2>
         </div>
         <figure class="method-scene reveal">
           <img src="/assets/pixel-noir/goose-lab-workbench.webp" alt="深夜的鹅工具实验室里，一只鹅正在工作台前发布软件" draggable="false" loading="lazy" />
@@ -190,9 +311,36 @@ app.innerHTML = `
     <section class="now-section" id="now">
       <div class="now-heading reveal"><span>SHIP LOG / 最近在 ship</span><h2>发版像呼吸。</h2></div>
       <div class="now-feed">
-        <article class="reveal"><time>2026.06</time><img src="/assets/logos/goose-note.png" alt="" draggable="false" /><p><b>鹅的笔记</b>连接真实磁盘文件夹，加入版本快照回滚、PDF / Word 导出和 AI 行内辅写。</p><span>新增</span></article>
-        <article class="reveal"><time>2026.06</time><img src="/assets/logos/goose-monitor.png" alt="" draggable="false" /><p><b>鹅的监控</b>完成分平台打包、Linux 图标识别，Windows 抓图标不再闪黑窗。</p><span>修复</span></article>
-        <article class="reveal"><time>2026.05</time><img src="/assets/logos/goose-run.png" alt="" draggable="false" /><p><b>鹅的运行</b>升级为 AppKit + WKWebView 原生 macOS 应用，接入真实 PTY 与脚本工作流。</p><span>重构</span></article>
+        ${shipLog.map((entry) => `
+          <details class="ship-item reveal" data-ship="${entry.id}">
+            <summary class="ship-summary">
+              <time>${entry.latestDate}</time>
+              <img src="/assets/logos/goose-${entry.id}.png" alt="" draggable="false" />
+              <div class="ship-copy">
+                <p><b>${entry.name}</b>${entry.summary}</p>
+                <span class="ship-meta">最近 ${entry.commits[0].time} · ${entry.commits[0].sha}</span>
+              </div>
+              <div class="ship-toggle"><span>最近 10 条提交</span><i aria-hidden="true"></i></div>
+            </summary>
+            <div class="ship-detail">
+              <div class="ship-detail__head">
+                <p>来自 <a href="${entry.repoUrl}" target="_blank" rel="noreferrer">${entry.en}</a> 的 GitHub 提交记录</p>
+                <a class="ship-repo" href="${entry.repoUrl}/commits" target="_blank" rel="noreferrer">打开仓库 ${icon("arrow")}</a>
+              </div>
+              <ol class="ship-commits">
+                ${entry.commits.map((commit) => `
+                  <li>
+                    <a href="${commit.url}" target="_blank" rel="noreferrer">
+                      <time datetime="${commit.time.replace(" ", "T")}:00+08:00">${commit.time}</time>
+                      <code>${commit.sha}</code>
+                      <span>${commit.message}</span>
+                    </a>
+                  </li>
+                `).join("")}
+              </ol>
+            </div>
+          </details>
+        `).join("")}
       </div>
     </section>
 
@@ -280,15 +428,20 @@ document.addEventListener("dragstart", (event) => {
   if (event.target instanceof Element && event.target.closest("img, svg")) event.preventDefault();
 });
 
-const productDetails = document.querySelectorAll<HTMLDetailsElement>(".work-item");
-productDetails.forEach((details) => {
-  details.addEventListener("toggle", () => {
-    if (!details.open) return;
-    productDetails.forEach((other) => {
-      if (other !== details) other.open = false;
+const bindExclusiveDetails = (selector: string) => {
+  const items = document.querySelectorAll<HTMLDetailsElement>(selector);
+  items.forEach((details) => {
+    details.addEventListener("toggle", () => {
+      if (!details.open) return;
+      items.forEach((other) => {
+        if (other !== details) other.open = false;
+      });
     });
   });
-});
+};
+
+bindExclusiveDetails(".work-item");
+bindExclusiveDetails(".ship-item");
 
 const nav = document.querySelector<HTMLElement>(".site-nav");
 const onScroll = () => nav?.setAttribute("data-scrolled", String(window.scrollY > 24));
