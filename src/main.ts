@@ -391,7 +391,7 @@ const startEffect = (name: EffectName) => {
   const elements = { source, content, output };
 
   if (name === "liquid") {
-    activeEffect = createLiquid(elements, { color: [0.82, 0.22, 0.12], radius: 0.42, force: 1.35, intensity: 2.8, curl: 2.4, blend: 9, distortion: 0.65 });
+    activeEffect = createLiquid(elements, { color: [0.933, 0.78, 0.91], radius: 0.42, force: 1.35, intensity: 2.8, curl: 2.4, blend: 9, distortion: 0.65 });
   } else if (name === "ripple") {
     activeEffect = createRipple(elements, { trigger: "hover", amplitude: 0.85, wavelength: 94, rings: 3, refraction: 72, dispersion: 0.45, shine: 0.9 });
   } else if (name === "clouds") {
