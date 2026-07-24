@@ -91,25 +91,23 @@ app.innerHTML = `
     <section class="hero" id="top">
       <canvas class="effect-source" id="effect-source" layoutsubtree="true" aria-hidden="true"></canvas>
       <canvas class="effect-output" id="effect-output" aria-hidden="true"></canvas>
-      <div class="hero-orbit" aria-hidden="true"><span></span><span></span><span></span></div>
+      <div class="hero-art" aria-hidden="true">
+        <img src="/assets/pixel-noir/goose-lab-hero.webp" alt="" fetchpriority="high" />
+      </div>
       <div class="hero-layout">
         <div class="hero-copy" id="effect-content">
-          <p class="availability"><span></span> 独立开发者 · 中国 · 正在做东西</p>
+          <p class="availability"><span></span> GOOSE LAB · 夜间构建中</p>
           <h1>把每天的麻烦，<br />做成<span>一键。</span></h1>
-          <p class="hero-lede">我是 Eachann。一个人设计、开发、发布一组键盘优先的本地工具；和 AI 结对，也把 AI 放进真正需要它的地方。</p>
+          <p class="hero-lede">我是 Eachann。一个人守着这间深夜工坊，把笔记、脚本、书签、进程和验证码，做成五只安静好用的鹅。</p>
           <div class="hero-actions">
-            <a class="primary-action" href="#work">看看这群鹅 ${icon("arrow")}</a>
+            <a class="primary-action" href="#work">进入鹅厂 ${icon("arrow")}</a>
             <a class="text-action" href="https://github.com/eachann1024" target="_blank" rel="noreferrer">${icon("github")} GitHub</a>
           </div>
         </div>
-        <div class="goose-stage">
-          <canvas id="particle-goose" aria-label="由粒子组成的鹅工具箱图标"></canvas>
-          <img class="goose-fallback" src="/assets/logos/goose-note.png" alt="鹅工具箱图标" />
-          <p>拖动粒子，看看它会不会飞走</p>
-        </div>
+        <p class="scene-caption"><i></i> 五只鹅正在排队等发版</p>
       </div>
       <div class="effect-console" aria-label="Canvas UI 特效控制台">
-        <div class="effect-console__label">Canvas UI / 实验场</div>
+        <div class="effect-console__label">SIGNAL FX / 像素实验场</div>
         <div class="effect-switches" role="group" aria-label="选择页面特效">
           ${Object.entries(effectMeta).map(([key, value], index) => `<button type="button" data-effect="${key}" aria-pressed="${index === 0}">${value.label}</button>`).join("")}
         </div>
@@ -120,8 +118,8 @@ app.innerHTML = `
 
     <section class="work-section" id="work">
       <div class="section-intro reveal">
-        <p>不是概念图，是每天都在长大的工具。</p>
-        <h2>五只鹅，<br />各自解决一件麻烦事。</h2>
+        <p>每只鹅都守着一台机器，只处理一种麻烦。</p>
+        <h2>五位夜班员工，<br />五件真正能用的工具。</h2>
       </div>
       <div class="work-list">
         ${products.map((product, index) => `
@@ -138,9 +136,15 @@ app.innerHTML = `
     </section>
 
     <section class="method-section" id="method">
-      <div class="method-statement reveal">
-        <p>我的工作台</p>
-        <h2>一份核心，<br />多种壳。<br /><span>少一点重复，</span><br />多一点交付。</h2>
+      <div class="method-grid">
+        <div class="method-statement reveal">
+          <p>WORKBENCH / 我的深夜工作台</p>
+          <h2>一份核心，<br />多种壳。<br /><span>少一点重复，</span><br />多一点交付。</h2>
+        </div>
+        <figure class="method-scene reveal">
+          <img src="/assets/pixel-noir/goose-lab-workbench.webp" alt="深夜的鹅工具实验室里，一只鹅正在工作台前发布软件" loading="lazy" />
+          <figcaption><span>LIVE FEED</span> 深夜 02:17 · 新版本正在打包</figcaption>
+        </figure>
       </div>
       <div class="method-notes">
         <article class="reveal"><b>键盘优先</b><p>高频操作先有快捷键，鼠标是补充。工具应该跟得上想法，而不是打断它。</p></article>
@@ -151,7 +155,7 @@ app.innerHTML = `
     </section>
 
     <section class="now-section" id="now">
-      <div class="now-heading reveal"><span>最近在 ship</span><h2>发版像呼吸。</h2></div>
+      <div class="now-heading reveal"><span>SHIP LOG / 最近在 ship</span><h2>发版像呼吸。</h2></div>
       <div class="now-feed">
         <article class="reveal"><time>2026.06</time><img src="/assets/logos/goose-note.png" alt="" /><p><b>鹅的笔记</b>连接真实磁盘文件夹，加入版本快照回滚、PDF / Word 导出和 AI 行内辅写。</p><span>新增</span></article>
         <article class="reveal"><time>2026.06</time><img src="/assets/logos/goose-monitor.png" alt="" /><p><b>鹅的监控</b>完成分平台打包、Linux 图标识别，Windows 抓图标不再闪黑窗。</p><span>修复</span></article>
@@ -162,9 +166,9 @@ app.innerHTML = `
     <section class="contact-section" id="contact">
       <canvas class="contact-ripple" id="contact-ripple" aria-hidden="true"></canvas>
       <canvas class="contact-source" id="contact-source" layoutsubtree="true" aria-hidden="true"></canvas>
+      <img class="contact-art" src="/assets/pixel-noir/goose-lab-portal.webp" alt="一只提着工具箱的鹅走向星光门廊" loading="lazy" />
       <div class="contact-copy" id="contact-content">
-        <img src="/assets/logos/goose-marks.png" alt="鹅的书签图标" />
-        <p>如果你也在做有用的小东西——</p>
+        <p>NEXT BUILD / 下一次构建</p>
         <h2>来交换一个<br />还没做完的想法。</h2>
         <a href="https://github.com/eachann1024" target="_blank" rel="noreferrer">在 GitHub 找我 ${icon("arrow")}</a>
       </div>
@@ -228,23 +232,6 @@ document.querySelectorAll<HTMLButtonElement>("button[data-effect]").forEach((but
   button.addEventListener("click", () => startEffect(button.dataset.effect as EffectName));
 });
 
-const particleCanvas = document.querySelector<HTMLCanvasElement>("#particle-goose");
-let particleInstance: EffectInstance = null;
-if (particleCanvas && !motionQuery.matches) {
-  const particleObserver = new IntersectionObserver((entries) => {
-    if (!entries.some((entry) => entry.isIntersecting)) return;
-    particleObserver.disconnect();
-    void import("../components/canvasui/ParticleObjectVanilla.ts").then(({ createParticleObject }) => {
-      if (motionQuery.matches) return;
-      particleInstance = createParticleObject(
-        { canvas: particleCanvas },
-        { src: "/assets/logos/goose-note.png", count: 9000, size: 2.25, sizeVariance: 0.65, radius: 105, strength: 0.9, swirl: 0.75, spring: 1.05, damping: 0.38, drift: 0.45, scale: 3.1, floatIntensity: 0.8, rotationIntensity: 0.35, orbit: true, zoom: false, autoRotate: false, onLoad: () => document.querySelector(".goose-stage")?.classList.add("has-particles") },
-      );
-    });
-  }, { rootMargin: "180px" });
-  particleObserver.observe(particleCanvas);
-}
-
 const contactOutput = document.querySelector<HTMLCanvasElement>("#contact-ripple");
 const contactSource = document.querySelector<HTMLCanvasElement>("#contact-source");
 const contactContent = document.querySelector<HTMLElement>("#contact-content");
@@ -258,9 +245,8 @@ if (contactOutput && contactSource && contactContent && !motionQuery.matches) {
 
 motionQuery.addEventListener("change", () => {
   activeEffect?.destroy();
-  particleInstance?.destroy();
   contactEffect?.destroy();
-  activeEffect = particleInstance = contactEffect = null;
+  activeEffect = contactEffect = null;
   startEffect(activeEffectName);
 });
 
@@ -294,6 +280,5 @@ document.querySelectorAll(".reveal").forEach((element) => revealObserver.observe
 
 window.addEventListener("pagehide", () => {
   activeEffect?.destroy();
-  particleInstance?.destroy();
   contactEffect?.destroy();
 }, { once: true });
